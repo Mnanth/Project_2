@@ -17,22 +17,37 @@ from tensorflow import keras
 from tensorflow.keras import datasets, layers, models
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing import image_dataset_from_directory
 #Step 1: Building A NN Structure
 #input shape
 input_shape = (500,500,3)
 
 #Relative Paths
 BASE_DIR = Path(__file__).resolve().parent
-train_path = BASE_DIR / 'data' / 'train'
-validation_path = BASE_DIR / 'data' / 'validation'
-test_path = BASE_DIR / 'data' / 'test'
+train_path = BASE_DIR / 'Data' / 'train'
+validation_path = BASE_DIR / 'Data' / 'valid'
+test_path = BASE_DIR / 'Data' / 'test'
 
 #Data augmentation
 train_datagen = ImageDataGenerator(
     rescale = 1.0/255,
-    shear_range = 0.1,
+    shear_range = 0.1, 
     zoom_range = 0.1)
 
 val_datagen = ImageDataGenerator(
     rescale = 1.0/255)
 
+#Creating the train and validation generator
+train_data = image_dataset_from_directory(
+    train_path,
+    labels = 'inferred',
+    label_mode = 'categorical',
+    image_size = (128,128),
+    batch_size = 32)
+
+validation_data = image_dataset_from_directory(
+    validation_path,
+    labels = 'inferred',
+    label_mode = 'categorical',
+    image_size = (128,128),
+    batch_size = 32)
