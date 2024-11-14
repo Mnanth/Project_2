@@ -16,8 +16,9 @@ from pathlib import Path
 from tensorflow import keras
 from tensorflow.keras import datasets, layers, models
 from tensorflow.keras.models import Sequential
-
-#Building A NN Structure
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+#Step 1: Building A NN Structure
+#input shape
 input_shape = (500,500,3)
 
 #Relative Paths
@@ -25,6 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent
 train_path = BASE_DIR / 'data' / 'train'
 validation_path = BASE_DIR / 'data' / 'validation'
 test_path = BASE_DIR / 'data' / 'test'
-#model = Sequential()
 
+#Data augmentation
+train_datagen = ImageDataGenerator(
+    rescale = 1.0/255,
+    shear_range = 0.1,
+    zoom_range = 0.1)
+
+val_datagen = ImageDataGenerator(
+    rescale = 1.0/255)
 
