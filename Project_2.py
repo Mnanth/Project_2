@@ -10,13 +10,21 @@ import tensorflow as tf
 import pandas as pd
 import numpy as nm
 import matplotlib.pyplot as plt
+from pathlib import Path
+
 
 from tensorflow import keras
 from tensorflow.keras import datasets, layers, models
 from tensorflow.keras.models import Sequential
 
 #Building A NN Structure
+input_shape = (500,500,3)
 
-model = Sequential()
+#Relative Paths
+BASE_DIR = Path(__file__).resolve().parent
+train_path = BASE_DIR / 'data' / 'train'
+validation_path = BASE_DIR / 'data' / 'validation'
+test_path = BASE_DIR / 'data' / 'test'
+#model = Sequential()
 
 
