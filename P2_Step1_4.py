@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Nov  7 12:18:29 2024
+Created on Sun Nov 17 17:07:57 2024
 
 @author: mithu
 """
+
 
 import tensorflow as tf
 import pandas as pd
@@ -71,10 +72,6 @@ model.add(Conv2D(64,(3,3), activation = 'relu'))
 
 model.add(MaxPooling2D(pool_size=(2,2)))
 
-model.add(Conv2D(128,(3,3), activation = 'relu'))
-
-model.add(MaxPooling2D(pool_size=(2,2)))
-
 model.add(Flatten())
 
 model.add (Dense(64, activation = 'relu'))
@@ -87,7 +84,7 @@ model.compile(optimizer = Adam(learning_rate = 0.001), loss = 'categorical_cross
 
 model.summary()
 
-history = model.fit(train_data, validation_data=validation_data, epochs = 14)
+history = model.fit(train_data, validation_data=validation_data, epochs = 8)
 
 test_loss,test_acc = model.evaluate(test_data)
 
@@ -120,5 +117,5 @@ plt.legend()
 
 plt.show()
 
-
+model.save('/Users/mithu/Documents/GitHub/Project_2/model.h5')
 
